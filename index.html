@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>FirstPR: find your way into any codebase</title>
+  <meta name="description" content="Paste a GitHub repository. FirstPR maps it, finds an issue you can finish, and walks you to your first pull request.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='11' y='4' width='10' height='24' rx='2' fill='%23F2C12E'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="bar">
+    <a class="mark" href="./" aria-label="FirstPR home">
+      <span class="mark-blaze" aria-hidden="true"></span>FirstPR
+    </a>
+    <button class="keys-toggle" type="button" aria-expanded="false" aria-controls="keys">Keys</button>
+  </header>
+
+  <section id="keys" class="keys" hidden>
+    <div class="keys-inner">
+      <p class="keys-lead">Both are optional and stay in this tab only. Nothing is stored or sent anywhere except GitHub and Anthropic.</p>
+      <label class="field">
+        <span>GitHub token</span>
+        <input id="gh-token" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_…">
+        <small>Raises GitHub’s limit from 60 to 5,000 requests an hour. A fine-grained token with no permissions is enough.</small>
+      </label>
+      <label class="field">
+        <span>Anthropic API key</span>
+        <input id="ai-key" type="password" autocomplete="off" spellcheck="false" placeholder="sk-ant-…">
+        <small>Turns on the walkthrough and diff review. Without it you can still copy the prompt into any AI chat.</small>
+      </label>
+    </div>
+  </section>
+
+  <main>
+    <section class="start" aria-labelledby="headline">
+      <svg class="topo" id="topo" viewBox="0 0 900 640" aria-hidden="true" focusable="false"></svg>
+      <div class="start-inner">
+        <h1 id="headline">Find your way into <span class="nowrap">any codebase.</span></h1>
+        <p class="lede">Paste a GitHub repository. FirstPR maps it, finds an issue you can actually finish, and walks you all the way to your first pull request.</p>
+
+        <form id="repo-form" class="repo-form" novalidate>
+          <label class="repo-label" for="repo">Repository</label>
+          <div class="repo-field">
+            <span class="repo-prefix" aria-hidden="true">github.com/</span>
+            <input id="repo" name="repo" type="text" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="owner/repo" aria-describedby="repo-error">
+          </div>
+          <p id="repo-error" class="repo-error" role="alert" hidden></p>
+
+          <fieldset class="level">
+            <legend>Where are you starting from?</legend>
+            <label><input type="radio" name="level" value="first" checked><span>This is my first contribution</span></label>
+            <label><input type="radio" name="level" value="some"><span>I have a few merged PRs</span></label>
+            <label><input type="radio" name="level" value="comfortable"><span>I am comfortable in big codebases</span></label>
+          </fieldset>
+
+          <button class="go" type="submit">Map this repo</button>
+        </form>
+
+        <p class="try">Try one with real newcomer issues:
+          <button type="button" data-repo="fmtlib/fmt">fmtlib/fmt</button>
+          <button type="button" data-repo="nlohmann/json">nlohmann/json</button>
+          <button type="button" data-repo="excalidraw/excalidraw">excalidraw/excalidraw</button>
+        </p>
+
+        <ol id="log" class="log" aria-live="polite" hidden></ol>
+      </div>
+    </section>
+
+    <section id="results" class="results" hidden aria-label="Your route to a first pull request"></section>
+  </main>
+
+  <footer class="foot">
+    <p>Built solo by <a href="https://github.com/Varshith2403315">Siva Sai Varshith Mitta</a> for Hackyard Build 2026. Reads only public data from GitHub and runs entirely in your browser. <a href="https://github.com/Varshith2403315/firstpr">Source on GitHub</a>.</p>
+  </footer>
+
+  <template id="copy-tpl"><button type="button" class="copy">Copy</button></template>
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
