@@ -256,7 +256,7 @@ function stopIssues(ctx) {
           ' what the maintainers need. Or map a different repo.')));
   }
   const intro = ctx.issueSource === 'labelled'
-    ? `Sorted by how well each one fits where you are starting from. Maintainers labelled these as good for newcomers.`
+    ? `Sorted by how well each one fits where you are starting from. The maintainers labelled these ${ctx.labelsUsed.map((l) => `“${l}”`).join(' or ')}.`
     : `This repo does not label newcomer issues, so these are open issues with quiet threads. Read each one carefully.`;
   const shown = state.showAll ? list : list.slice(0, 6);
 
