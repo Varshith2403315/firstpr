@@ -58,6 +58,15 @@ test('ranks an easy unassigned issue above a hard assigned one for a beginner', 
   assert.ok(ranked[1].rating.notes.some((n) => /Assigned/.test(n.text)));
 });
 
+test('never folds source folders away', () => {
+  const names = A.mapDirectories(json).map((d) => d.name);
+  assert.ok(names.includes('single_include') && names.includes('include'));
+  const many = Array.from({ length: 20 }, (_, i) => `big${i}/` + 'x'.repeat(i)).flatMap((p, i) => Array.from({ length: 30 - i }, (_, j) => `${p}${j}.c`));
+  const dirs = A.mapDirectories([...many, 'src/a.c'], 10);
+  assert.ok(dirs.some((d) => d.name === 'src'));
+  assert.ok(dirs.some((d) => d.isRest));
+});
+
 test('makes readable branch names', () => {
   assert.equal(A.branchFor({ number: 42, title: 'Typo in README install section', labels: [{ name: 'docs' }] }), 'docs/42-typo-readme-install-section');
 });

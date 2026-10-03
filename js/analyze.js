@@ -109,9 +109,13 @@ export function mapDirectories(files, max = 10) {
     return { name: name || '(top level)', isRoot: !name, count: list.length, role, ext: dom?.ext || '' };
   });
   all.sort((a, b) => b.count - a.count);
-  if (all.length <= max) return all;
-  const head = all.slice(0, max - 1);
-  const rest = all.slice(max - 1);
+  // Folding away one or two folders saves nothing, so only fold when it is worth it.
+  if (all.length <= max + 2) return all;
+  // Source folders can be small (header-only libraries) but must never be hidden.
+  const keep = (d) => /^(src|source|lib|core|include|single_include|apps?|packages)$/i.test(d.name);
+  const head = [...all.slice(0, max - 1), ...all.slice(max - 1).filter(keep)];
+  const rest = all.filter((d) => !head.includes(d));
+  if (!rest.length) return head;
   head.push({
     name: `${rest.length} more folders`, isRoot: false, isRest: true,
     count: rest.reduce((s, d) => s + d.count, 0), role: rest.slice(0, 4).map((d) => d.name).join(', ') + (rest.length > 4 ? ' and others.' : '.'), ext: '',
