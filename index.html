@@ -4,7 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>FirstPR: find your way into any codebase</title>
-  <meta name="description" content="Paste a GitHub repository. FirstPR maps it, finds an issue you can finish, and walks you to your first pull request.">
+  <meta name="description" content="Paste a GitHub repo. FirstPR maps the code, finds issues that fit your level, and gets you from clone to pull request.">
+  <meta property="og:title" content="FirstPR">
+  <meta property="og:description" content="Paste a GitHub repo. FirstPR maps the code, finds issues that fit your level, and gets you from clone to pull request.">
+  <meta property="og:image" content="https://varshith2403315.github.io/firstpr/docs/screenshot.png">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='11' y='4' width='10' height='24' rx='2' fill='%23F2C12E'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -40,7 +44,7 @@
       <svg class="topo" id="topo" viewBox="0 0 900 640" aria-hidden="true" focusable="false"></svg>
       <div class="start-inner">
         <h1 id="headline">Find your way into <span class="nowrap">any codebase.</span></h1>
-        <p class="lede">Paste a GitHub repository. FirstPR maps it, finds an issue you can actually finish, and walks you all the way to your first pull request.</p>
+        <p class="lede">Paste a GitHub repo. FirstPR maps the code, finds issues that fit your level, and gets you from clone to pull request.</p>
 
         <form id="repo-form" class="repo-form" novalidate>
           <label class="repo-label" for="repo">Repository</label>
@@ -60,7 +64,7 @@
           <button class="go" type="submit">Map this repo</button>
         </form>
 
-        <p class="try">Try one with real newcomer issues:
+        <p class="try">Or try:
           <button type="button" data-repo="fmtlib/fmt">fmtlib/fmt</button>
           <button type="button" data-repo="nlohmann/json">nlohmann/json</button>
           <button type="button" data-repo="excalidraw/excalidraw">excalidraw/excalidraw</button>
@@ -74,7 +78,7 @@
   </main>
 
   <footer class="foot">
-    <p>Built solo by <a href="https://github.com/Varshith2403315">Siva Sai Varshith Mitta</a> for Hackyard Build 2026. Reads only public data from GitHub and runs entirely in your browser. <a href="https://github.com/Varshith2403315/firstpr">Source on GitHub</a>.</p>
+    <p>Made by <a href="https://github.com/Varshith2403315">Siva Sai Varshith Mitta</a> for Hackyard Build 2026. Everything runs in your browser. <a href="https://github.com/Varshith2403315/firstpr">Source on GitHub</a>.</p>
   </footer>
 
   <template id="copy-tpl"><button type="button" class="copy">Copy</button></template>
