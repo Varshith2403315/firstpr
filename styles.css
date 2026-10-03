@@ -220,6 +220,8 @@ h1 {
 
 /* folder plots */
 .plots { display: flex; flex-wrap: wrap; gap: 6px; }
+/* Soaks up the leftover space on the last row, so a small folder is not drawn wide. */
+.plots::after { content: ''; flex: 30 1 0; }
 .plot {
   flex: var(--w) 1 9.5rem; min-height: 6.5rem;
   padding: 0.7rem 0.8rem; border-radius: 4px;
